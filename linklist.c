@@ -50,7 +50,7 @@ bool ListDelete(LNode* L, int i, ElemType* e) {
 //4·显示链表长度
 int ListLength(LNode* L) {
 	int j = 0;
-	LNode* p = L;
+	LNode* p = L->next;
 	while (p != NULL) {
 		j++;
 		p = p->next;
@@ -117,7 +117,22 @@ void DispList(LNode* L) {
 		p = p->next;
 	}
 }
+//11排序
+void ListSort(LNode* L) {
+	LNode* p = L->next->next , *pre = L, * q;//p需要比较元素的节点
+	L->next->next = NULL;
+	while (p != NULL) {
+		pre = L;
+		while ((pre->next != NULL) && (p->date > pre->next->date)) {
+			pre = pre->next;
+		}
+		q = pre->next;
+		pre->next = p;
+		p = p->next;
+		pre->next->next = q;
+	}
 
+}
 //判断链表是否存在
 bool IsExist(LNode* L) {
 	if (NULL == L) {
@@ -137,6 +152,7 @@ void show() { //显示功能
 	printf("7·插入\n");
 	printf("8·尾插法插入元素\n");
 	printf("9·输出链表\n");
+	printf("11.排序\n");
 	printf("0·退出\n");
 	printf("**********************\n");
 }
@@ -240,12 +256,18 @@ int main(void) {
 				printf("链表不存在！\n");
 			break;
 		case 9://输出链表
-			if (IsExist(L))
-				DispList(L);
+			if (!IsExist(L))
+				printf("链表不存在！\n");
 			else if(!ListLength(L))
 				printf("链表为空！\n");
 			else
-				printf("链表不存在！\n");
+				DispList(L);
+			break;
+		case 11:
+			if (ListLength > 1)
+			{
+				ListSort(L);
+			}
 			break;
 		}
 	}
