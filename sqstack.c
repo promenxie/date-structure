@@ -9,48 +9,48 @@ typedef struct
 	ElemType date[MaxSize];
 	int top;
 }SqStack;
-//³õÊ¼»¯Õ»
+//åˆå§‹åŒ–æ ˆ
 SqStack* InitStack() {
 	SqStack * s =  (SqStack*)malloc(sizeof(SqStack));
 	s->top = -1;
 	return s;
 }
-//Ïú»ÙÕ»
+//é”€æ¯æ ˆ
 void DestoryStack(SqStack** ps) {
 	free(*ps);
 	*ps = NULL;
 }
-//ÅĞ¶ÏÕ»ÊÇ·ñÎª¿Õ
+//åˆ¤æ–­æ ˆæ˜¯å¦ä¸ºç©º
 bool StackEmpty(SqStack* s) {
 	return s->top == -1;
 }
-//½øÕ»
+//è¿›æ ˆ
 bool Push(SqStack* s, ElemType e) {
 	if (MaxSize - 1 == s->top)
 		return false;
 	s->date[++s->top] = e;
 	return true;
 }
-//³öÕ»
+//å‡ºæ ˆ
 bool Pop(SqStack* s, ElemType* e) {
 	if (-1 == s->top)
 		return false;
 	*e = s->date[s->top--] ;
 	return true;
 }
-//È¡Õ»¶¥ÔªËØ
+//å–æ ˆé¡¶å…ƒç´ 
 bool GetTop(SqStack* s, ElemType* e) {
 	if (-1 == s->top)
 		return false;
-	e = s->date[s->top];
+	*e = s->date[s->top];
 	return true;
 }
 void show() {
 	printf("\n------------------------------\n");
-	printf("1.³õÊ¼»¯Õ»********4.½øÕ»\n");
-	printf("2.Ïú»ÙÕ»**********5.³öÕ»\n");
-	printf("3.ÅĞ¶ÏÕ»ÊÇ·ñÎª¿Õ***6.È¡Õ»¶¥ÔªËØ\n");
-	printf("********ÊäÈë0ÍË³ö³ÌĞò*********\n");
+	printf("1.åˆå§‹åŒ–æ ˆ********4.è¿›æ ˆ\n");
+	printf("2.é”€æ¯æ ˆ**********5.å‡ºæ ˆ\n");
+	printf("3.åˆ¤æ–­æ ˆæ˜¯å¦ä¸ºç©º***6.å–æ ˆé¡¶å…ƒç´ \n");
+	printf("********è¾“å…¥0é€€å‡ºç¨‹åº*********\n");
 	printf("--------------------------------\n");
 }
 int main(void) {
@@ -60,7 +60,7 @@ int main(void) {
 	while (k)
 	{
 		show();
-		printf("ÊäÈëÊı×Ö£¨0-6£©Ñ¡Ôñ¹¦ÄÜ£º");
+		printf("è¾“å…¥æ•°å­—ï¼ˆ0-6ï¼‰é€‰æ‹©åŠŸèƒ½ï¼š");
 		fflush(stdin);
 		scanf_s("%d", &k);
 		switch (k)
@@ -68,62 +68,62 @@ int main(void) {
 		case 1:
 			if (NULL == s) {
 				s = InitStack();
-				printf("³õÊ¼»¯³É¹¦£¡\n");
+				printf("åˆå§‹åŒ–æˆåŠŸï¼\n");
 			}
 			else {
-				printf("ÒÑÓĞÕ»´æÔÚ£¡ÇëÏú»ÙºóÔÙ³õÊ¼»¯¡£\n");
+				printf("å·²æœ‰æ ˆå­˜åœ¨ï¼è¯·é”€æ¯åå†åˆå§‹åŒ–ã€‚\n");
 			}
 			break;
 		case 2:
 			DestoryStack(&s);
-			printf("Ïú»Ù³É¹¦£¡\n");
+			printf("é”€æ¯æˆåŠŸï¼\n");
 			break;
 		case 3:
 			if (!s)
 			{
-				printf("Õ»²»´æÔÚ£¡\n");
+				printf("æ ˆä¸å­˜åœ¨ï¼\n");
 					break;
 			}
 			if (StackEmpty(s))
-				printf("Õ»Îª¿Õ£¡");
+				printf("æ ˆä¸ºç©ºï¼");
 			else
-				printf("Õ»²»Îª¿Õ£¡");
+				printf("æ ˆä¸ä¸ºç©ºï¼");
 			break;
 		case 4:
 			if (!s)
 			{
-				printf("Õ»²»´æÔÚ£¡\n");
+				printf("æ ˆä¸å­˜åœ¨ï¼\n");
 				break;
 			}
-			printf("ÊäÈëÒªÑ¹ÈëÕ»µÄÔªËØ£º");
+			printf("è¾“å…¥è¦å‹å…¥æ ˆçš„å…ƒç´ ï¼š");
 			fflush(stdin);
 			scanf_s("%d", &e);
 			if (Push(s, e))
-				printf("½øÕ»³É¹¦£¡\n");
+				printf("è¿›æ ˆæˆåŠŸï¼\n");
 			else
-				printf("Õ»ÒÑÂú£¡\n");
+				printf("æ ˆå·²æ»¡ï¼\n");
 			break;
 		case 5:
 			if (!s)
 			{
-				printf("Õ»²»´æÔÚ£¡\n");
+				printf("æ ˆä¸å­˜åœ¨ï¼\n");
 				break;
 			}
 			if (Pop(s, &e))
-				printf("µ¯³öÕ»µÄÔªËØÎª£º%d\n", e);
+				printf("å¼¹å‡ºæ ˆçš„å…ƒç´ ä¸ºï¼š%d\n", e);
 			else
-				printf("Õ»Îª¿Õ£¡\n");
+				printf("æ ˆä¸ºç©ºï¼\n");
 			break;
 		case 6:
 			if (!s)
 			{
-				printf("Õ»²»´æÔÚ£¡\n");
+				printf("æ ˆä¸å­˜åœ¨ï¼\n");
 				break;
 			}
 			if (GetTop(s, &e))
-				printf("Õ»¶¥ÔªËØÎª£º%d\n", e);
+				printf("æ ˆé¡¶å…ƒç´ ä¸ºï¼š%d\n", e);
 			else
-				printf("Õ»Îª¿Õ£¡\n");
+				printf("æ ˆä¸ºç©ºï¼\n");
 			break;
 		}
 	}
